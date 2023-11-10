@@ -93,6 +93,7 @@ const InvoiceForm = ({
 		};
 		state.items.push(items);
 		setState({ ...state, items: state.items });
+		handleCalculateTotal();
 	};
 
 	const handleCalculateTotal = () => {
@@ -102,11 +103,12 @@ const InvoiceForm = ({
 		items.map(function (items) {
 			subTotal = parseFloat(
 				subTotal +
-					parseFloat(items.price).toFixed(2) *
+					parseFloat(items.price) *
 						parseInt(items.quantity)
-			).toFixed(2);
+			);
 		});
 
+		
 		setState({
 			...state,
 			subTotal: parseFloat(subTotal).toFixed(2),
